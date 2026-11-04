@@ -6,5 +6,16 @@
 <body><div id="header">未来大の歴史｜「未来大」マーカーにカメラを向けてください</div>
 <div id="panel"><p id="status">マーカーを探しています…</p><h2 id="history-title"></h2><p id="history-text"></p><p id="step"></p><div id="nav"><button id="prev">前へ</button><button id="next">次へ</button></div></div>
 <a-scene embedded vr-mode-ui="enabled:false" renderer="logarithmicDepthBuffer:true;precision:medium" arjs="sourceType:webcam;debugUIEnabled:false;trackingMethod:best;">
-<a-marker type="pattern" url="miraidai.patt" id="miraidai"><a-box position="0 0.5 0" material="color:#18a6c8;opacity:.9" rotation="0 35 0" animation="property:rotation;to:0 395 0;loop:true;dur:9000;easing:linear"></a-box><a-text value="FUN AR" position="-0.7 1.35 0" scale="1.5 1.5 1.5" color="#ffffff" align="center" side="double"></a-text></a-marker><a-entity camera></a-entity></a-scene>
-<script>const marker=document.querySelector('#miraidai'),status=document.querySelector('#status');marker.addEventListener('markerFound',()=>status.textContent='AR表示中！');marker.addEventListener('markerLost',()=>status.textContent='マーカーを探しています…');const pages=[{title:'2000年：開学',text:'公立はこだて未来大学は2000年に開学しました。情報科学とデザインを横断する学びを特色とする大学です。'},{title:'大学の発展',text:'未来大学では、情報技術を基盤に、デザインや人間・社会との関わりを考える教育・研究が行われてきました。'},{title:'現在の未来大学',text:'現在も、情報科学とデザインを結びつけ、課題を発見し解決する学びを大切にしています。'}];let current=0;const title=document.querySelector('#history-title'),description=document.querySelector('#history-text'),step=document.querySelector('#step'),prev=document.querySelector('#prev'),next=document.querySelector('#next');function render(){title.textContent=pages[current].title;description.textContent=pages[current].text;step.textContent=`${current+1} / ${pages.length}`;prev.disabled=current===0;next.disabled=current===pages.length-1}prev.addEventListener('click',()=>{if(current>0){current--;render()}});next.addEventListener('click',()=>{if(current<pages.length-1){current++;render()}});render();</script></body></html>
+<a-marker
+  type="pattern"
+  url="./miraidai.patt"
+  id="miraidai"
+  emitevents="true">
+  
+  <a-box
+    position="0 0.5 0"
+    color="red"
+    scale="0.5 0.5 0.5">
+  </a-box>
+
+</a-marker><script>const marker=document.querySelector('#miraidai'),status=document.querySelector('#status');marker.addEventListener('markerFound',()=>status.textContent='AR表示中！');marker.addEventListener('markerLost',()=>status.textContent='マーカーを探しています…');const pages=[{title:'2000年：開学',text:'公立はこだて未来大学は2000年に開学しました。情報科学とデザインを横断する学びを特色とする大学です。'},{title:'大学の発展',text:'未来大学では、情報技術を基盤に、デザインや人間・社会との関わりを考える教育・研究が行われてきました。'},{title:'現在の未来大学',text:'現在も、情報科学とデザインを結びつけ、課題を発見し解決する学びを大切にしています。'}];let current=0;const title=document.querySelector('#history-title'),description=document.querySelector('#history-text'),step=document.querySelector('#step'),prev=document.querySelector('#prev'),next=document.querySelector('#next');function render(){title.textContent=pages[current].title;description.textContent=pages[current].text;step.textContent=`${current+1} / ${pages.length}`;prev.disabled=current===0;next.disabled=current===pages.length-1}prev.addEventListener('click',()=>{if(current>0){current--;render()}});next.addEventListener('click',()=>{if(current<pages.length-1){current++;render()}});render();</script></body></html>
