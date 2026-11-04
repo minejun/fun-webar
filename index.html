@@ -1,4 +1,95 @@
-const message = document.querySelector("#message");
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+  <title>未来大AR</title>
+
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.5/aframe/build/aframe-ar.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: system-ui, sans-serif;
+    }
+
+    #header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      background: #000c;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 15px;
+    }
+
+    #message {
+      display: none;
+      position: fixed;
+      bottom: 40px;
+      left: 5%;
+      width: 90%;
+      box-sizing: border-box;
+      z-index: 10;
+      background: rgba(255,255,255,0.95);
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 4px 15px #0004;
+    }
+
+    #message h2 {
+      font-size: 22px;
+      color: #075c89;
+    }
+
+    #message p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="header">
+    「未来大」マーカーにカメラを向けてください
+  </div>
+
+  <div id="message">
+    <h2>公立はこだて未来大学</h2>
+    <p>
+      公立はこだて未来大学へようこそ！<br>
+      この大学は2000年に開学しました。
+    </p>
+  </div>
+
+  <a-scene
+    embedded
+    vr-mode-ui="enabled: false"
+    arjs="sourceType: webcam; debugUIEnabled: false;">
+
+    <a-marker
+      id="miraidai"
+      type="pattern"
+      url="./miraidai.patt"
+      emitevents="true">
+    </a-marker>
+
+    <a-entity camera></a-entity>
+
+  </a-scene>
+
+  <script>
+    const marker = document.querySelector("#miraidai");
+    const message = document.querySelector("#message");
     const header = document.querySelector("#header");
 
     marker.addEventListener("markerFound", () => {
